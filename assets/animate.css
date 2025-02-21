@@ -1,0 +1,60 @@
+/* 初始狀態 */
+.animated {
+  opacity: 0;
+  transition: all 0.5s ease-out;
+}
+
+/* 漸入動畫 */
+.animated.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 往上滑入 */
+.animated.slide-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+.slide-up-start {
+  opacity: 1;
+  transform: translateY(30px);
+}
+/* 往上滑入 */
+.animated.slide-down {
+  opacity: 1;
+  transform: translateY(0);
+}
+.slide-down-start {
+  opacity: 1;
+  transform: translateY(-30px);
+}
+
+/* 縮放進入 */
+.animated.zoom-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.zoom-in-start {
+  transform: scale(0.5);
+}
+
+/* 向左滑入 */
+.animated.slide-left {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-left-start {
+  transform: translateX(-50px);
+}
+
+/* 向右滑入 */
+.animated.slide-right {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-right-start {
+  transform: translateX(50px);
+}
