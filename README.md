@@ -1,39 +1,34 @@
-# vue-max-shop
+# Vue Max Shop 🕯️
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue Max Shop 是一個使用 **Vue 3 + Vite** 打造的電商網站，專門販售 **香氛蠟燭**。  
+網站包含首頁、關於我們、產品、購物車、結帳、常見問題等頁面，並提供登入後台管理功能。  
 
-## Recommended IDE Setup
+## ✨ 技術棧
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **框架**：Vue 3 (Composition API)
+- **打包工具**：Vite
+- **樣式**：Bootstrap 5
+- **狀態管理**：Pinia
+- **路由管理**：Vue Router
+- **API 請求**：Axios
+- **語言**：TypeScript
 
-## Type Support for `.vue` Imports in TS
+## 📌 功能
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- **電商商店功能**
+  - 瀏覽香氛蠟燭商品
+  - 加入購物車
+  - 結帳功能
+  - 常見問題區塊
 
-## Customize configuration
+- **後台管理**
+  - 產品管理
+  - 訂單管理
+  - 優惠券管理
+  - 使用者登入
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## 🚀 快速開始
 
-## Project Setup
-
+### 1️⃣ 安裝依賴
 ```sh
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
