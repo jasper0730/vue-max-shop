@@ -1,1 +1,0 @@
-<template><h1>product admin</h1></template>
