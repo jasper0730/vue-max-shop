@@ -1,0 +1,1 @@
+<template><h1>AdminOrders</h1></template>
