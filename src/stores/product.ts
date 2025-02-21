@@ -2,13 +2,24 @@ import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import axios from 'axios';
 
+interface Product {
+  id: number;
+  title: string;
+  imageUrl: string;
+  category: string;
+  description: string;
+  content: string;
+  price?: number;
+  origin_price: number;
+}
+
 const API_URL = import.meta.env.VITE_API;
 const API_PATH = import.meta.env.VITE_PATH;
 
 export const useProductStore = defineStore('product', () => {
   const isLoading = ref(false);
-  const products = ref([]);
-  const selectedProduct = ref({});
+  const products = ref<Product[]>([]);
+  const selectedProduct = ref<Product | null>(null);
   const isModalOpen = ref(false);
   const pagination = ref({});
 
@@ -41,7 +52,7 @@ export const useProductStore = defineStore('product', () => {
     };
   };
   // 單一產品
-  const openProductModal = async (id: string) => {
+  const openProductModal = async (id: string | number) => {
     try {
       isModalOpen.value = false;
       isLoading.value = true;
@@ -62,7 +73,7 @@ export const useProductStore = defineStore('product', () => {
   // 關閉產品燈箱
   const closeProductModal = () => {
     isModalOpen.value = false;
-    selectedProduct.value = {};
+    selectedProduct.value = null;
   };
   return {
     products,

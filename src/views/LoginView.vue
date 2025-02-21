@@ -39,7 +39,7 @@ const onSubmit = handleSubmit(async (values, { resetForm }) => {
       Cookies.set('myToken', token, { expires: new Date(expired) });
       router.push('/admin/products');
     } else {
-      throw new Error(res.message);
+      throw new Error(res.data.message || "登入失敗");
     }
   } catch (error) {
     resetForm();

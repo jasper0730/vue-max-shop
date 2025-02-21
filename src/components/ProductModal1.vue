@@ -13,14 +13,16 @@ let bsModal: Modal | null = null;
 watch(() => productStore.isModalOpen, (newValue) => {
   console.log('newValue', newValue);
   if (newValue) {
-    bsModal.show();
+    bsModal?.show();
   } else {
-    bsModal.hide();
+    bsModal?.hide();
   }
 });
 
 onMounted(() => {
-  bsModal = new Modal(modalElement.value);
+  if (modalElement.value) {
+    bsModal = new Modal(modalElement.value);
+  }
 });
 
 </script>
@@ -30,7 +32,7 @@ onMounted(() => {
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header bg-dark text-white">
-          <h5 class="modal-title">{{ productStore.selectedProduct?.title || "未選擇商品" }}</h5>
+          <h5 class="modal-title">{{ productStore.selectedProduct?.title ?? "未選擇商品" }}</h5>
           <button type="button" class="btn-close btn-close-white" @click="productStore.closeProductModal"></button>
         </div>
         <div class="modal-body">

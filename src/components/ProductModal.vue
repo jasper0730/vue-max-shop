@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch, onMounted, onUnmounted } from 'vue';
 import { useProductStore } from '../stores/product';
 import { useCartStore } from '../stores/cart';
 import Modal from 'bootstrap/js/dist/modal';
@@ -11,18 +11,24 @@ const qty = ref(1);
 let bsModal: Modal | null = null;
 
 watch(() => productStore.isModalOpen, (newValue) => {
-  console.log('newValue', newValue);
   if (newValue) {
-    bsModal.show();
+    bsModal?.show();
   } else {
-    bsModal.hide();
+    bsModal?.hide();
   }
 });
 
 onMounted(() => {
-  bsModal = new Modal(modalElement.value);
+  if (modalElement.value) {
+    bsModal = new Modal(modalElement.value, {
+      focus: false
+    });
+  }
 });
 
+onUnmounted(() => {
+  bsModal = null;
+});
 </script>
 
 <template>

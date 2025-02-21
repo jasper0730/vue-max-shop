@@ -3,12 +3,18 @@ import { defineStore } from 'pinia';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
+interface CartData {
+  total: number;
+  final_total: number;
+  carts: { id: string; qty: number; total: number; product: { title: string; imageUrl: string; }; }[];
+}
+
 const API_URL = import.meta.env.VITE_API;
 const API_PATH = import.meta.env.VITE_PATH;
 
 export const useCartStore = defineStore('cart', () => {
   const isLoading = ref(false);
-  const cartData = ref({});
+  const cartData = ref<CartData>({ total: 0, final_total: 0, carts: [] });
   const useCoupon = ref(false);
 
   // 購物車資料
@@ -29,7 +35,7 @@ export const useCartStore = defineStore('cart', () => {
     };
   };
   //  加入購物車
-  const addToCart = async (id: string, qty = 1) => {
+  const addToCart = async (id: string | number, qty = 1) => {
     try {
       isLoading.value = true;
       const url = `${API_URL}/api/${API_PATH}/cart`;
@@ -168,7 +174,7 @@ export const useCartStore = defineStore('cart', () => {
         });
         resetForm();
         getCarts();
-        cartData.value = {};
+        cartData.value = { total: 0, final_total: 0, carts: [] };
       } else {
         throw new Error(res.data.message || "訂單成立失敗");
       }

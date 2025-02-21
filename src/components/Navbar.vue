@@ -5,21 +5,23 @@ import Collapse from 'bootstrap/js/dist/collapse';
 
 const store = useCartStore();
 const cartLength = computed(() => store.cartData.carts?.length);
-const collapse = ref(false);
+const collapse = ref<HTMLElement | null>(null);
 let bsCollapse: Collapse | null = null;
 
 const toggleNavHam = () => {
-  bsCollapse.toggle();
+  bsCollapse?.toggle();
 };
 const closeNavHam = () => {
-  bsCollapse.hide();
+  bsCollapse?.hide();
 };
 
 onMounted(() => {
   store.getCarts();
-  bsCollapse = new Collapse(collapse.value, {
-    toggle: false,
-  });
+  if (collapse.value) {
+    bsCollapse = new Collapse(collapse.value, {
+      toggle: false,
+    });
+  }
 })
 
 </script>

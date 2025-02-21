@@ -11,13 +11,14 @@ const productStore = useProductStore();
 const cartStore = useCartStore();
 const products = computed(() => productStore.products);
 const isLoading = computed(() => productStore.isLoading || cartStore.isLoading);
-const pagination = computed(() => productStore.pagination);
+const pagination = computed(() => productStore.pagination) || cartStore.addToCart;
 
-const categoryChangeHandler = (e) => {
-  if (e.target.value === '全部') {
+const categoryChangeHandler = (e: Event) => {
+  const target = e.target as HTMLSelectElement;
+  if (target.value === '全部') {
     productStore.getProducts();
   } else {
-    productStore.getProducts(1, e.target.value);
+    productStore.getProducts(1, target.value);
   }
 };
 onMounted(() => {
@@ -42,7 +43,7 @@ onMounted(() => {
   <div v-intersect="{ animation: 'slide-up' }" class="container pb-5 animated slide-up-start">
     <Transition name="fade" appear>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 bg-light g-3">
-        <div class="col" v-for="item in products" :key="item.id">
+        <div class="col" v-for="item in products" :key="item?.id">
           <div class="
               card
               border-0
@@ -50,38 +51,39 @@ onMounted(() => {
               position-relative position-relative
               bg-light
             ">
-            <img :src="item.imageUrl" class="card-img-top rounded-0 w-100 object-fit" alt="..." style="height: 200px" />
+            <img :src="item?.imageUrl" class="card-img-top rounded-0 w-100 object-fit" alt="..."
+              style="height: 200px" />
             <a href="#" class="text-dark">
               <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i>
             </a>
             <div class="card-body p-0 text-center">
               <h4 class="mt-3 fs-5 text-dark">
-                {{ item.title }}
+                {{ item?.title }}
               </h4>
               <p class="card-text text-muted mb-0">
                 <span class="badge badge-outline rounded-pill bg-secondary">{{
-                  item.category
+                  item?.category
                 }}</span>
               </p>
-              <div v-if="item.price === item.origin_price">
+              <div v-if="item?.price === item?.origin_price">
                 <p class="text-muted">
-                  售價 NT${{ currency(item.origin_price) }}
+                  售價 NT${{ currency(item?.origin_price) }}
                 </p>
               </div>
               <div v-else>
                 <p class="text-muted mb-0">
-                  <del>原價 NT${{ currency(item.origin_price) }}</del>
+                  <del>原價 NT${{ currency(item?.origin_price) }}</del>
                 </p>
                 <p class="text-danger">
-                  優惠價 NT${{ currency(item.price) }}
+                  優惠價 NT${{ currency(item?.price ?? 0) }}
                 </p>
               </div>
               <button type="button" class="btn btn-sm btn-outline-dark rounded mb-2 w-100"
-                @click.prevent="productStore.openProductModal(item.id)">
+                @click.prevent="productStore.openProductModal(item?.id)">
                 產品介紹
               </button>
               <button type="button" class="btn btn-sm btn-outline-dark rounded mb-2 w-100"
-                @click.prevent="cartStore.addToCart(item.id)">
+                @click.prevent="cartStore.addToCart(item?.id)">
                 加入購物車
               </button>
             </div>
