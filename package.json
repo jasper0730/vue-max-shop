@@ -11,7 +11,7 @@
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
-    "deploy": "gh-pages -d src"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@vee-validate/yup": "^4.15.0",
