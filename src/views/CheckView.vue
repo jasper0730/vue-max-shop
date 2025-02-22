@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { onMounted, computed } from 'vue';
-import { currency } from '../utils/format.ts';
 import Loading from 'vue-loading-overlay';
 import { useCartStore } from '../stores/cart.ts';
 import { useForm } from 'vee-validate';
 import { string, object } from 'yup';
 import { toTypedSchema } from '@vee-validate/yup';
+import OrderList from '@/components/OrderList.vue';
 
 const store = useCartStore();
 const cartData = computed(() => store.cartData);
@@ -14,10 +14,10 @@ const isLoading = computed(() => store.isLoading);
 const { handleSubmit, defineField, errors } = useForm({
   validationSchema: toTypedSchema(
     object({
-      email: string().required('請輸入 Email').email('請輸入有效的 Email').default(''),
-      tel: string().required('請輸入電話').matches(/^\d+$/, '請輸入有效的電話號碼').default(''),
-      name: string().required('請輸入姓名').default(''),
-      address: string().required('請輸入地址').default(''),
+      email: string().required('*Email為必填').email('*請輸入有效的 Email').default(''),
+      tel: string().required('*電話為必填').matches(/^\d+$/, '*電話號碼格式錯誤').default(''),
+      name: string().required('*姓名為必填').default(''),
+      address: string().required('*地址為必填').default(''),
       message: string().default(''),
     }),
   ),
@@ -52,7 +52,7 @@ onMounted(() => {
       <div class="row">
         <div v-intersect="{ animation: 'slide-left' }" class="col-md-8 animated slide-left-start">
           <div class="justify-content-center">
-            <Form class="g-3" @submit="onSubmit" ref="form">
+            <form class="g-3" @submit="onSubmit" ref="form">
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input v-model="email" v-bind="emailAttrs" type="text" name="email" class="form-control" id="email"
@@ -90,40 +90,12 @@ onMounted(() => {
                   </button>
                 </div>
               </div>
-            </Form>
+            </form>
           </div>
         </div>
         <div v-intersect="{ animation: 'slide-right' }" class="col-md-4 animated slide-right-start">
           <div class="border p-4 mb-4">
-            <h4 class="fw-bold mb-4">訂購明細</h4>
-            <div class="pt-4">
-              <div class="pb-4 border-bottom">
-                <div v-for="item in cartData.carts" :key="item.id">
-                  <div class="d-flex justify-content-between text-muted">
-                    <p class="w-50">{{ item.product.title }} x {{ item.qty }}</p>
-                    <p>NT$ {{ currency(item.total) }}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="pt-4 d-flex justify-content-between text-muted">
-                <p>費用</p>
-                <p>NT$ {{ currency(cartData.total) }}</p>
-              </div>
-              <div class="d-flex justify-content-between text-muted">
-                <p>折扣</p>
-                <p>
-                  -{{
-                    currency(cartData.total - cartData.final_total)
-                  }}
-                </p>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-4">
-              <p class="mb-0 h4 fw-bold">總金額</p>
-              <p class="mb-0 h4 fw-bold">
-                NT$ {{ currency(Math.round(cartData.final_total)) }}
-              </p>
-            </div>
+            <OrderList :cart-data="cartData" />
             <router-link to="/cart"><button type="button" class="btn btn-dark w-100 mt-4 rounded">
                 回上一頁
               </button>

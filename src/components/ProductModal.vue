@@ -32,7 +32,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="modalElement" class="modal fade flex-column justify-content-center" tabindex="-1">
+  <div ref="modalElement" class="modal fade flex-column justify-content-center">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header bg-dark text-white">

@@ -10,12 +10,12 @@ const updatePage = (page: number) => {
 };
 </script>
 <template>
-  <nav aria-label="Page navigation example">
+  <nav>
     <ul class="pagination pagination-sm justify-content-center mt-3">
       <!-- 如果沒有上一頁則禁用=:class="{ disabled: !pages.has_pre }" -->
       <li class="page-item" :class="{ disabled: !pages?.has_pre }">
         <!-- 點擊回到上一頁=@click="updatePages(pages.current_page - 1)-->
-        <a class="page-link" href="#" aria-label="Previous" @click.prevent="updatePage(pages?.current_page - 1)">
+        <a class="page-link" href="#" @click.prevent="updatePage(pages?.current_page - 1)">
           <span >&laquo;</span>
         </a>
       </li>
@@ -30,7 +30,7 @@ const updatePage = (page: number) => {
       <!-- 如果沒有下一頁則禁用=:class="{ disabled: !pages.has_next }" -->
       <li class="page-item" :class="{ disabled: !pages?.has_next }">
         <!-- 點擊進入下一頁=@click.prevent="updatePage(pages.current_page + 1) -->
-        <a class="page-link" href="#" aria-label="Next" @click.prevent="updatePage(pages?.current_page + 1)">
+        <a class="page-link" href="#" @click.prevent="updatePage(pages?.current_page + 1)">
           <span>&raquo;</span>
         </a>
       </li>

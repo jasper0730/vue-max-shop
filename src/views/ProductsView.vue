@@ -30,8 +30,7 @@ onMounted(() => {
     <Loading :active="isLoading" :z-index="1060"></Loading>
     <div v-intersect="{ animation: 'slide-left' }" class="row animated slide-left-start">
       <div class="col-md-3 col-sm-4 col">
-        <select @change="categoryChangeHandler" class="form-select text-secondary bg-light rounded"
-          aria-label="Default select example">
+        <select @change="categoryChangeHandler" class="form-select text-secondary bg-light rounded">
           <option selected>全部</option>
           <option>淡雅</option>
           <option>適中</option>

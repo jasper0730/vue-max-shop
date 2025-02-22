@@ -30,8 +30,7 @@ onMounted(() => {
     <div class="sticky-top bg-light">
       <nav class="container navbar navbar-expand-lg navbar-light px-2">
         <router-link class="logo navbar-brand fs-1" to="/" @click="closeNavHam">Max</router-link>
-        <button class="navbar-toggler" type="button" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-          aria-label="Toggle navigation" @click="toggleNavHam">
+        <button class="navbar-toggler" type="button" @click="toggleNavHam">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup" ref="collapse">

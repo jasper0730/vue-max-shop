@@ -16,8 +16,8 @@ const isLoading = ref(false);
 const { handleSubmit, defineField, errors } = useForm({
   validationSchema: toTypedSchema(
     object({
-      email: string().required('請輸入 Email').email('請輸入有效的 Email').default(''),
-      password: string().required('請輸入密碼').default(''),
+      email: string().required('*Email為必填').email('*Email格式錯誤').default(''),
+      password: string().required('*密碼為必填').default(''),
     }),
   ),
 });

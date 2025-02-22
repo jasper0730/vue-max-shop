@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, onMounted, computed, watch } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { currency } from '../utils/format.ts';
 import Loading from 'vue-loading-overlay';
 import { useCartStore } from '../stores/cart.ts';
+import OrderList from '@/components/OrderList.vue';
 
 const store = useCartStore();
 const cartData = computed(() => store.cartData);
@@ -10,9 +11,6 @@ const isLoading = computed(() => store.isLoading);
 const couponCode = ref('helloworld520');
 onMounted(() => {
   store.getCarts();
-});
-watch(() => store.cartData, (newValue, oldValue) => {
-  console.log(newValue, oldValue);
 });
 </script>
 <template>
@@ -77,8 +75,7 @@ watch(() => store.cartData, (newValue, oldValue) => {
             目前沒有商品，請加入購物車，謝謝您
           </p>
           <div class="input-group w-100 mb-3">
-            <input default="1" type="text" class="form-control rounded shadow-none bg-light" placeholder="Coupon Code"
-              aria-label="Recipient's username" aria-describedby="button-addon2" v-model="couponCode" :disabled="cartData.final_total !== cartData.total ||
+            <input default="1" type="text" class="form-control rounded shadow-none bg-light" placeholder="Coupon Code" v-model="couponCode" :disabled="cartData.final_total !== cartData.total ||
                 !cartData.carts
                 " />
             <div class="input-group-append">
@@ -96,35 +93,7 @@ watch(() => store.cartData, (newValue, oldValue) => {
         </div>
         <div v-intersect="{ animation: 'slide-right' }" class="col-md-4 animated slide-right-start">
           <div class=" border p-4 mb-4">
-            <h4 class="fw-bold mb-4">訂購明細</h4>
-            <div class="pt-4">
-              <div class="pb-4 border-bottom">
-                <div v-for="item in cartData.carts" :key="item.id">
-                  <div class="d-flex justify-content-between text-muted">
-                <p class="w-50">{{item.product.title}} x {{  item.qty}}</p>
-                <p>NT$ {{ currency(item.total) }}</p>
-              </div>
-                </div>
-              </div>
-              <div class="pt-4 d-flex justify-content-between text-muted">
-                <p>費用</p>
-                <p>NT$ {{ currency(cartData.total) }}</p>
-              </div>
-              <div class="d-flex justify-content-between text-muted">
-                <p>折扣</p>
-                <p>
-                  -{{
-                    currency(cartData.total - cartData.final_total)
-                  }}
-                </p>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-4">
-              <p class="mb-0 h4 fw-bold">總金額</p>
-              <p class="mb-0 h4 fw-bold">
-                NT$ {{ currency(Math.round(cartData.final_total)) }}
-              </p>
-            </div>
+            <OrderList :cart-data="cartData" />
             <router-link to="/check"><button type="button" class="btn btn-dark w-100 mt-4 rounded"
                 :disabled="!cartData.carts || !cartData.carts?.length">
                 結帳

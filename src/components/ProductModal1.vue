@@ -11,7 +11,6 @@ const qty = ref(1);
 let bsModal: Modal | null = null;
 
 watch(() => productStore.isModalOpen, (newValue) => {
-  console.log('newValue', newValue);
   if (newValue) {
     bsModal?.show();
   } else {
