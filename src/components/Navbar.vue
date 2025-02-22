@@ -28,7 +28,7 @@ onMounted(() => {
 <template>
   <transition name="slide-down" appear>
     <div class="sticky-top bg-light">
-      <nav class="container navbar navbar-expand-lg navbar-light">
+      <nav class="container navbar navbar-expand-lg navbar-light px-2">
         <router-link class="logo navbar-brand fs-1" to="/" @click="closeNavHam">Max</router-link>
         <button class="navbar-toggler" type="button" aria-controls="navbarNavAltMarkup" aria-expanded="false"
           aria-label="Toggle navigation" @click="toggleNavHam">

@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@popperjs/core':
+        specifier: ^2.11.8
+        version: 2.11.8
       '@vee-validate/yup':
         specifier: ^4.15.0
         version: 4.15.0(vue@3.5.13(typescript@5.7.3))(yup@1.6.1)
@@ -29,6 +32,9 @@ importers:
       pinia:
         specifier: ^3.0.1
         version: 3.0.1(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))
+      popper.js:
+        specifier: ^1.16.1
+        version: 1.16.1
       sass:
         specifier: ^1.85.0
         version: 1.85.0
@@ -1689,6 +1695,10 @@ packages:
 
   pkg-types@1.3.1:
     resolution: {integrity: sha512-/Jm5M4RvtBFVkKWRu2BLUTNP8/M2a+UwuAX+ae4770q1qVGtfjG+WTCupoZixokjmHiry8uI+dlY8KXYV5HVVQ==}
+
+  popper.js@1.16.1:
+    resolution: {integrity: sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==}
+    deprecated: You can find the new Popper v2 at @popperjs/core, this package is dedicated to the legacy v1
 
   postcss-selector-parser@6.1.2:
     resolution: {integrity: sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==}
@@ -3640,6 +3650,8 @@ snapshots:
       confbox: 0.1.8
       mlly: 1.7.4
       pathe: 2.0.3
+
+  popper.js@1.16.1: {}
 
   postcss-selector-parser@6.1.2:
     dependencies:

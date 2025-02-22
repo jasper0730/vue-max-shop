@@ -13,7 +13,6 @@ body {
 
 a {
   color: #495057;
-  text-decoration: underline;
 }
 
 table {

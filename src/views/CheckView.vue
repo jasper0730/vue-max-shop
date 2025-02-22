@@ -96,28 +96,28 @@ onMounted(() => {
         <div v-intersect="{ animation: 'slide-right' }" class="col-md-4 animated slide-right-start">
           <div class="border p-4 mb-4">
             <h4 class="fw-bold mb-4">訂購明細</h4>
-            <table class="table text-muted border-bottom">
-              <tbody>
-                <tr>
-                  <th scope="row" class="border-0 px-0 pt-4 font-weight-normal">
-                    費用
-                  </th>
-                  <td class="text-end border-0 px-0 pt-4">
-                    NT {{ currency(cartData.total) }}
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row" class="border-0 px-0 pt-0 pb-4 font-weight-normal">
-                    折扣
-                  </th>
-                  <td class="text-end border-0 px-0 pt-0 pb-4">
-                    {{
-                      currency(cartData.final_total - cartData.total)
-                    }}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="pt-4">
+              <div class="pb-4 border-bottom">
+                <div v-for="item in cartData.carts" :key="item.id">
+                  <div class="d-flex justify-content-between text-muted">
+                    <p class="w-50">{{ item.product.title }} x {{ item.qty }}</p>
+                    <p>NT$ {{ currency(item.total) }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-4 d-flex justify-content-between text-muted">
+                <p>費用</p>
+                <p>NT$ {{ currency(cartData.total) }}</p>
+              </div>
+              <div class="d-flex justify-content-between text-muted">
+                <p>折扣</p>
+                <p>
+                  -{{
+                    currency(cartData.total - cartData.final_total)
+                  }}
+                </p>
+              </div>
+            </div>
             <div class="d-flex justify-content-between mt-4">
               <p class="mb-0 h4 fw-bold">總金額</p>
               <p class="mb-0 h4 fw-bold">

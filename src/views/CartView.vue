@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, watch } from 'vue';
 import { currency } from '../utils/format.ts';
 import Loading from 'vue-loading-overlay';
 import { useCartStore } from '../stores/cart.ts';
@@ -8,9 +8,11 @@ const store = useCartStore();
 const cartData = computed(() => store.cartData);
 const isLoading = computed(() => store.isLoading);
 const couponCode = ref('helloworld520');
-
 onMounted(() => {
   store.getCarts();
+});
+watch(() => store.cartData, (newValue, oldValue) => {
+  console.log(newValue, oldValue);
 });
 </script>
 <template>
@@ -96,7 +98,15 @@ onMounted(() => {
           <div class=" border p-4 mb-4">
             <h4 class="fw-bold mb-4">訂購明細</h4>
             <div class="pt-4">
-              <div class="d-flex justify-content-between text-muted">
+              <div class="pb-4 border-bottom">
+                <div v-for="item in cartData.carts" :key="item.id">
+                  <div class="d-flex justify-content-between text-muted">
+                <p class="w-50">{{item.product.title}} x {{  item.qty}}</p>
+                <p>NT$ {{ currency(item.total) }}</p>
+              </div>
+                </div>
+              </div>
+              <div class="pt-4 d-flex justify-content-between text-muted">
                 <p>費用</p>
                 <p>NT$ {{ currency(cartData.total) }}</p>
               </div>
