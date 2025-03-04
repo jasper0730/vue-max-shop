@@ -1,8 +1,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
+import FrontView from '@/views/FrontView.vue';
 const routes = [
   {
     path: '/',
-    component: () => import('../views/FrontView.vue'),
+    component: FrontView,
     children: [
       {
         path: '',
