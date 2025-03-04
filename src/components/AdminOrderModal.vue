@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, defineProps, defineEmits, onMounted } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { currency, date } from '@/utils/format.ts';
 import Modal from 'bootstrap/js/dist/modal';
 import type { OrderType } from '@/types/types';

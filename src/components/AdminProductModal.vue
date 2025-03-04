@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, defineEmits, defineProps } from 'vue';
+import { ref, watch  } from 'vue';
 import type { PropType } from 'vue';
 import Modal from './Modal.vue';
 import type { ProductType } from '@/types/types';

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineProps, defineEmits, onMounted, watch } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import Modal from 'bootstrap/js/dist/modal';
 import type { CouponType } from '@/types/types';
 
