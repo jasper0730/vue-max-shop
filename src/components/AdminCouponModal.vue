@@ -7,13 +7,14 @@ const props = defineProps<{ isNew: boolean; coupon: CouponType }>();
 const emit = defineEmits(['update-coupon']);
 const modalElement = ref<HTMLElement | null>(null);
 const tempCoupon = ref<CouponType>({ ...props.coupon });
-const dueDate = ref<string>(new Date(tempCoupon.value.due_date).toISOString().split('T')[0]);
+const dueDate = ref<string>('');
 let bootstrapModal: Modal | null = null;
 
 watch(
   () => props.coupon,
   (newCoupon) => {
     tempCoupon.value = { ...newCoupon };
+    dueDate.value = new Date(newCoupon.due_date).toISOString().split('T')[0];
   },
   { deep: true, immediate: true },
 );

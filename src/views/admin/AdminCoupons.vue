@@ -83,7 +83,7 @@ const openCouponModal = (isNew: boolean, item?: CouponType) => {
   } else {
     tempCoupon.value = {
       code: '',
-      due_date: 0,
+      due_date: new Date().getTime(),
       id: '',
       is_enabled: 0,
       num: 0,
@@ -142,7 +142,7 @@ onMounted(() => {
           <tr v-for="(item, key) in coupons" :key="key">
             <td>{{ item.title }}</td>
             <td>{{ item.percent }}%</td>
-            <td>{{ date(item.due_date) }}</td>
+            <td>{{ date(item.due_date /1000) }}</td>
             <td>
               <span v-if="item.is_enabled === 1" class="text-success">啟用</span>
               <span v-else class="text-muted">未啟用</span>
