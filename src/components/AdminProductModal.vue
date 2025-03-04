@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch  } from 'vue';
+import { ref, watch } from 'vue';
 import type { PropType } from 'vue';
 import Modal from './Modal.vue';
 import type { ProductType } from '@/types/types';
@@ -60,7 +60,6 @@ const handleSave = () => {
           </div>
           <div class="body px-3 py-2">
             <div class="row">
-              <!-- 圖片區塊 -->
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="image" class="form-label">輸入圖片網址</label>
@@ -79,8 +78,6 @@ const handleSave = () => {
                   <input type="file" id="customFile" class="form-control" ref="fileInput" />
                 </div>
                 <img class="img-fluid" :src="product.imageUrl" />
-
-                <!-- 多圖片上傳 -->
                 <div class="mt-3" v-if="product.imagesUrl?.length">
                   <div v-for="(image, key) in product.imagesUrl" :key="key" class="mb-3">
                     <input
@@ -109,8 +106,6 @@ const handleSave = () => {
                   新增圖片
                 </button>
               </div>
-
-              <!-- 產品資訊區塊 -->
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="title" class="form-label">標題</label>
@@ -122,7 +117,6 @@ const handleSave = () => {
                     placeholder="請輸入標題"
                   />
                 </div>
-
                 <div class="row gx-2">
                   <div class="mb-3 col-md-6">
                     <label for="category" class="form-label">分類</label>
@@ -145,7 +139,6 @@ const handleSave = () => {
                     />
                   </div>
                 </div>
-
                 <div class="row gx-2">
                   <div class="mb-3 col-md-6">
                     <label for="origin_price" class="form-label">原價</label>
@@ -170,7 +163,6 @@ const handleSave = () => {
                     />
                   </div>
                 </div>
-
                 <div class="mb-3">
                   <label for="description" class="form-label">產品描述</label>
                   <textarea
@@ -180,7 +172,6 @@ const handleSave = () => {
                     placeholder="請輸入產品描述"
                   ></textarea>
                 </div>
-
                 <div class="mb-3">
                   <label for="content" class="form-label">說明內容</label>
                   <textarea
@@ -190,7 +181,6 @@ const handleSave = () => {
                     placeholder="請輸入產品說明內容"
                   ></textarea>
                 </div>
-
                 <div class="mb-3">
                   <div class="form-check">
                     <input
@@ -205,7 +195,6 @@ const handleSave = () => {
               </div>
             </div>
           </div>
-
           <div class="footer d-flex justify-content-end mt-3 gap-2 px-3">
             <button type="button" class="btn btn-secondary" @click="emit('close')">取消</button>
             <button type="button" class="btn btn-primary" @click="handleSave">儲存</button>

@@ -25,7 +25,6 @@ table {
   object-fit: cover;
 }
 
-// 動畫
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 1s ease;

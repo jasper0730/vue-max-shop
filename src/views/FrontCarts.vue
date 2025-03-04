@@ -85,7 +85,7 @@ onMounted(() => {
                   cartData.final_total !== cartData.total ||
                   !cartData.carts?.length
                   ">
-                <span v-if="store.useCoupon || cartData.final_total !== cartData.total">已套用優惠券</span>
+                <span v-if="store.useCoupon || cartData.final_total !== cartData.total">已套用優惠券</span> 
                 <span v-else>套用優惠券</span>
               </button>
             </div>

@@ -8,20 +8,17 @@ const productStore = useProductStore();
 const cartStore = useCartStore();
 const modalElement = ref(null);
 const qty = ref(1);
-const isModalOpen = computed(()  => productStore.isModalOpen)
+const isModalOpen = computed(() => productStore.isModalOpen);
 
 let bsModal: Modal | null = null;
 
-watch(
-  isModalOpen,
-  (newValue) => {
-    if (newValue) {
-      bsModal?.show();
-    } else {
-      bsModal?.hide();
-    }
-  },
-);
+watch(isModalOpen, (newValue) => {
+  if (newValue) {
+    bsModal?.show();
+  } else {
+    bsModal?.hide();
+  }
+});
 
 onMounted(() => {
   if (modalElement.value) {
@@ -85,7 +82,6 @@ onUnmounted(() => {
                   </div>
                   <div class="input-group mb-3">
                     <input type="number" class="form-control" v-model.number="qty" min="1" />
-                    <!-- 若input綁定的qty為false或是等於小於0怎無法按按鈕 -->
                     <button
                       :disabled="qty <= 0 || !qty"
                       class="btn btn-outline-dark"

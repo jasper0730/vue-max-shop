@@ -141,7 +141,7 @@ onMounted(() => {
         <tr v-for="(item, key) in coupons" :key="key">
           <td>{{ item.title }}</td>
           <td>{{ item.percent }}%</td>
-          <td>{{ date(item.due_date) }}</td>
+          <td>{{ date(item.due_date) }} {{ item.due_date }}</td>
           <td>
             <span v-if="item.is_enabled === 1" class="text-success">啟用</span>
             <span v-else class="text-muted">未啟用</span>
@@ -169,7 +169,7 @@ onMounted(() => {
       :coupon="tempCoupon"
       @update-coupon="updateCoupon"
     />
-    <DeleteModal ref="deleteModalElement" @delete-item="deleteItem" :title="tempCoupon.title"/>
+    <DeleteModal ref="deleteModalElement" @delete-item="deleteItem" :title="tempCoupon.title" />
     <Pagination :pages="pagination" @update-page="getCoupons" />
   </div>
 </template>

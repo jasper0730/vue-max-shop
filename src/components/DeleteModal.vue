@@ -37,8 +37,6 @@ defineEmits(['delete-item'])
           <button type="button" class="btn btn-outline-secondary rounded" data-bs-dismiss="modal">
             取消
           </button>
-          <!-- 使用外層的函式=@click="$emit('delete-item')" -->
-          <!-- 點擊確認刪除後,透過emit使用外層函式deleteItem -->
           <button type="button" class="btn btn-danger rounded" @click="$emit('delete-item')">
             確認刪除
           </button>

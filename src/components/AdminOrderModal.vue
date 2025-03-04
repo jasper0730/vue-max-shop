@@ -4,12 +4,10 @@ import { currency, date } from '@/utils/format.ts';
 import Modal from 'bootstrap/js/dist/modal';
 import type { OrderType } from '@/types/types';
 
-
 const props = defineProps<{ order: OrderType }>();
 const emit = defineEmits(['update-paid']);
 const modalElement = ref<HTMLElement | null>(null);
 let bootstrapModal: Modal | null = null;
-
 const tempOrder = ref<OrderType>({ ...props.order });
 
 watch(

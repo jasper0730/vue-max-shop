@@ -12,24 +12,21 @@ const updatePage = (page: number) => {
 <template>
   <nav>
     <ul class="pagination pagination-sm justify-content-center mt-3">
-      <!-- 如果沒有上一頁則禁用=:class="{ disabled: !pages.has_pre }" -->
       <li class="page-item" :class="{ disabled: !pages?.has_pre }">
-        <!-- 點擊回到上一頁=@click="updatePages(pages.current_page - 1)-->
         <a class="page-link" href="#" @click.prevent="updatePage(pages?.current_page - 1)">
-          <span >&laquo;</span>
+          <span>&laquo;</span>
         </a>
       </li>
-      <!-- 顯示當前頁數=:class="{active: pages.current_page === page}" -->
-      <li class="page-item" v-for="page in pages?.total_pages" :key="page"
-        :class="{ active: pages?.current_page === page }">
-        <span class="page-link" v-if="pages?.current_page === page">{{
-          page
-        }}</span>
+      <li
+        class="page-item"
+        v-for="page in pages?.total_pages"
+        :key="page"
+        :class="{ active: pages?.current_page === page }"
+      >
+        <span class="page-link" v-if="pages?.current_page === page">{{ page }}</span>
         <a class="page-link" href="#" v-else @click.prevent="updatePage(page)">{{ page }}</a>
       </li>
-      <!-- 如果沒有下一頁則禁用=:class="{ disabled: !pages.has_next }" -->
       <li class="page-item" :class="{ disabled: !pages?.has_next }">
-        <!-- 點擊進入下一頁=@click.prevent="updatePage(pages.current_page + 1) -->
         <a class="page-link" href="#" @click.prevent="updatePage(pages?.current_page + 1)">
           <span>&raquo;</span>
         </a>
@@ -45,7 +42,7 @@ const updatePage = (page: number) => {
 }
 
 .page-item.disabled {
-  opacity: .3;
+  opacity: 0.3;
 }
 
 .page-link:focus,
@@ -61,8 +58,8 @@ const updatePage = (page: number) => {
 }
 
 .pagination-sm .page-link {
-  padding: .25rem .5rem;
-  font-size: .875rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
 }
 
 .page-link {
@@ -72,6 +69,10 @@ const updatePage = (page: number) => {
   text-decoration: none;
   background-color: #f8f9fa;
   border: 1px solid #dee2e6;
-  transition: color .15sease-in-out, background-color .15sease-in-out, border-color .15sease-in-out, box-shadow .15sease-in-out;
+  transition:
+    color 0.15sease-in-out,
+    background-color 0.15sease-in-out,
+    border-color 0.15sease-in-out,
+    box-shadow 0.15sease-in-out;
 }
 </style>

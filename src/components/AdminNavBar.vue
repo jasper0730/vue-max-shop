@@ -2,7 +2,6 @@
 import { useAuthStore } from '@/stores/auth';
 import { computed } from 'vue';
 import Loading from 'vue-loading-overlay';
-import AdminProductModal from './AdminProductModal.vue';
 
 const isLoading = computed(() => store.isLoading);
 const store = useAuthStore();

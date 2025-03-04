@@ -65,7 +65,7 @@ import BannerSlide from '@/components/BannerSlide.vue';
         </div>
         <div
           v-intersect="{ animation: 'slide-left' }"
-          class="col-md-6 d-flex flex-column text-center justify-content-center align-items-center text-center animated slide-left-start"
+          class="col-md-6 d-flex flex-column text-center justify-content-center align-items-center animated slide-left-start"
         >
           <h4 class="mt-4 h4 mb-4 fw-bold">浪漫的香氛之旅</h4>
           <p>發現了嗎?</p>
