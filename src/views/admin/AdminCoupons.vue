@@ -33,7 +33,6 @@ const getCoupons = async (page = 1) => {
     isLoading.value = true;
     const url = `${API_URL}/api/${API_PATH}/admin/coupons?page=${page}`;
     const res = await axios.get(url);
-    console.log(res);
     if (res.data.success) {
       coupons.value = res.data.coupons;
       pagination.value = res.data.pagination;
@@ -70,7 +69,6 @@ const updateCoupon = async (item: CouponType) => {
 };
 
 const openDeleteModal = (item: CouponType) => {
-  console.log('ddd', item)
   tempCoupon.value = { ...item };
   if (deleteModalElement.value) {
     deleteModal = new Modal(deleteModalElement.value.$el);
@@ -79,7 +77,6 @@ const openDeleteModal = (item: CouponType) => {
 };
 
 const openCouponModal = (isNew: boolean, item?: CouponType) => {
-  console.log(item);
   isCreate.value = isNew;
   if (!isNew && item) {
     tempCoupon.value = { ...item };

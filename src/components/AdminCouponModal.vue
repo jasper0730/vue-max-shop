@@ -26,7 +26,6 @@ const saveCoupon = () => {
 };
 
 const showModal = () => {
-  console.log('111');
   bootstrapModal?.show();
 };
 
