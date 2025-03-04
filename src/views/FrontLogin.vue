@@ -8,7 +8,6 @@ import { useAuthStore } from '@/stores/auth';
 
 const store = useAuthStore();
 const isLoading = computed(() => store.isLoading);
-
 const { handleSubmit, defineField, errors } = useForm({
   validationSchema: toTypedSchema(
     object({

@@ -15,10 +15,7 @@ const isLoading = ref(false);
 const orders = ref<OrderType[]>([]);
 const pagination = ref({});
 const deleteModalElement = ref<InstanceType<typeof DeleteModal> | null>(null);
-
 const orderModalElement = ref<InstanceType<typeof AdminOrderModal> | null>(null);
-
-let deleteModal: Modal | null = null;
 const tempOrder = ref<OrderType>({
   id: '',
   is_paid: false,
@@ -33,6 +30,7 @@ const tempOrder = ref<OrderType>({
   total: 0,
   paid_date: null,
 });
+let deleteModal: Modal | null = null;
 
 const getOrders = async (page = 1) => {
   try {
@@ -112,68 +110,70 @@ onMounted(() => {
 <template>
   <div class="pb-5">
     <Loading :active="isLoading" :z-index="1060"></Loading>
-    <table class="table">
-      <thead>
-        <tr>
-          <th width="10%">購買時間</th>
-          <th width="25%">Email</th>
-          <th width="25%">購買款項</th>
-          <th width="15%">應付金額</th>
-          <th width="15%">是否付款</th>
-          <th width="10%">編輯</th>
-        </tr>
-      </thead>
-      <tbody>
-        <template v-for="item in orders" :key="item.id">
-          <tr v-if="orders.length" :class="{ 'text-secondary': !item.is_paid }">
-            <td>{{ date(item.create_at) }}</td>
-            <td><span v-if="item.user" v-text="item.user.email"></span></td>
-            <td>
-              <ul class="list-unstyled">
-                <li v-for="product in item.products" :key="product.id">
-                  {{ product.product.title }}數量：{{ product.qty }}
-                  {{ product.product.unit }}
-                </li>
-              </ul>
-            </td>
-            <td class="text-right">
-              {{ currency(Math.round(item.total)) }}
-            </td>
-            <td>
-              <div class="form-check form-switch">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  :id="`paidSwitch${item.id}`"
-                  v-model="item.is_paid"
-                  @change="updatePaid(item)"
-                />
-                <label class="form-check-label" :for="`paidSwitch${item.id}`">
-                  <span v-if="item.is_paid">已付款</span>
-                  <span v-else>未付款</span>
-                </label>
-              </div>
-            </td>
-            <td>
-              <button
-                class="btn btn-outline-dark rounded btn-sm ms-1"
-                style="white-space: nowrap"
-                @click="() => openOrderModal(item)"
-              >
-                檢視
-              </button>
-              <button
-                class="btn btn-outline-dark rounded btn-sm ms-1"
-                type="button"
-                @click="() => openDeleteModal(item)"
-              >
-                刪除
-              </button>
-            </td>
+    <div class="d-flex justify-content-center">
+      <table class="table">
+        <thead>
+          <tr>
+            <th width="10%">購買時間</th>
+            <th width="25%">Email</th>
+            <th width="25%">購買款項</th>
+            <th width="15%">應付金額</th>
+            <th width="15%">是否付款</th>
+            <th width="10%">編輯</th>
           </tr>
-        </template>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <template v-for="item in orders" :key="item.id">
+            <tr v-if="orders.length" :class="{ 'text-secondary': !item.is_paid }">
+              <td>{{ date(item.create_at) }}</td>
+              <td><span v-if="item.user" v-text="item.user.email"></span></td>
+              <td>
+                <ul class="list-unstyled">
+                  <li v-for="product in item.products" :key="product.id">
+                    {{ product.product.title }}數量：{{ product.qty }}
+                    {{ product.product.unit }}
+                  </li>
+                </ul>
+              </td>
+              <td class="text-right">
+                {{ currency(Math.round(item.total)) }}
+              </td>
+              <td>
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    :id="`paidSwitch${item.id}`"
+                    v-model="item.is_paid"
+                    @change="updatePaid(item)"
+                  />
+                  <label class="form-check-label" :for="`paidSwitch${item.id}`">
+                    <span v-if="item.is_paid">已付款</span>
+                    <span v-else>未付款</span>
+                  </label>
+                </div>
+              </td>
+              <td>
+                <button
+                  class="btn btn-outline-dark rounded btn-sm ms-1"
+                  style="white-space: nowrap"
+                  @click="() => openOrderModal(item)"
+                >
+                  檢視
+                </button>
+                <button
+                  class="btn btn-outline-dark rounded btn-sm ms-1"
+                  type="button"
+                  @click="() => openDeleteModal(item)"
+                >
+                  刪除
+                </button>
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
     <Pagination :pages="pagination" @update-page="getOrders"></Pagination>
     <DeleteModal ref="deleteModalElement" @delete-item="deleteItem"></DeleteModal>
     <AdminOrderModal

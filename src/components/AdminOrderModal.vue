@@ -46,7 +46,6 @@ defineExpose({ showModal, hideModal });
     id="orderModal"
     tabindex="-1"
     aria-labelledby="orderModalLabel"
-    aria-hidden="true"
     ref="modalElement"
   >
     <div class="modal-dialog modal-xl">

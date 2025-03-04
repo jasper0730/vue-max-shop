@@ -11,8 +11,6 @@ import type { ProductType } from '@/types/types';
 
 const API_URL = import.meta.env.VITE_API;
 const API_PATH = import.meta.env.VITE_PATH;
-
-
 const products = ref<ProductType[]>([]);
 const pagination = ref({});
 const isLoading = ref(false);

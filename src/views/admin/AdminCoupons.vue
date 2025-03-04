@@ -127,42 +127,44 @@ onMounted(() => {
         建立新的優惠券
       </button>
     </div>
-    <table class="table mt-4">
-      <thead>
-        <tr>
-          <th>名稱</th>
-          <th>折扣百分比</th>
-          <th>到期日</th>
-          <th>是否啟用</th>
-          <th>編輯</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(item, key) in coupons" :key="key">
-          <td>{{ item.title }}</td>
-          <td>{{ item.percent }}%</td>
-          <td>{{ date(item.due_date) }} {{ item.due_date }}</td>
-          <td>
-            <span v-if="item.is_enabled === 1" class="text-success">啟用</span>
-            <span v-else class="text-muted">未啟用</span>
-          </td>
-          <td>
-            <button
-              class="btn btn-outline-dark rounded btn-sm ms-1"
-              @click="() => openCouponModal(false, item)"
-            >
-              編輯
-            </button>
-            <button
-              class="btn btn-outline-dark rounded btn-sm ms-1"
-              @click="() => openDeleteModal(item)"
-            >
-              刪除
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="d-flex justify-content-center">
+      <table class="table mt-4">
+        <thead>
+          <tr>
+            <th>名稱</th>
+            <th>折扣百分比</th>
+            <th>到期日</th>
+            <th>是否啟用</th>
+            <th>編輯</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, key) in coupons" :key="key">
+            <td>{{ item.title }}</td>
+            <td>{{ item.percent }}%</td>
+            <td>{{ date(item.due_date) }}</td>
+            <td>
+              <span v-if="item.is_enabled === 1" class="text-success">啟用</span>
+              <span v-else class="text-muted">未啟用</span>
+            </td>
+            <td>
+              <button
+                class="btn btn-outline-dark rounded btn-sm ms-1"
+                @click="() => openCouponModal(false, item)"
+              >
+                編輯
+              </button>
+              <button
+                class="btn btn-outline-dark rounded btn-sm ms-1"
+                @click="() => openDeleteModal(item)"
+              >
+                刪除
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <AdminCouponModal
       ref="couponModalElement"
       :isNew="isCreate"
@@ -175,7 +177,29 @@ onMounted(() => {
 </template>
 <style scope>
 .table {
+  max-width: 1000px;
+  width: 100%;
   --bs-table-bg: transprants;
   background-color: var(--bs-table-bg);
+}
+th,
+td:nth-child(1) {
+  width: 200px;
+}
+th,
+td:nth-child(2) {
+  width: 200px;
+}
+th,
+td:nth-child(3) {
+  width: 200px;
+}
+th,
+td:nth-child(4) {
+  width: 200px;
+}
+th,
+td:nth-child(5) {
+  width: 200px;
 }
 </style>

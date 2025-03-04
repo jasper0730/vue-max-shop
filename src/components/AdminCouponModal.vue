@@ -6,10 +6,9 @@ import type { CouponType } from '@/types/types';
 const props = defineProps<{ isNew: boolean; coupon: CouponType }>();
 const emit = defineEmits(['update-coupon']);
 const modalElement = ref<HTMLElement | null>(null);
-let bootstrapModal: Modal | null = null;
-
 const tempCoupon = ref<CouponType>({ ...props.coupon });
 const dueDate = ref<string>(new Date(tempCoupon.value.due_date).toISOString().split('T')[0]);
+let bootstrapModal: Modal | null = null;
 
 watch(
   () => props.coupon,
@@ -48,7 +47,6 @@ defineExpose({ showModal, hideModal });
     id="couponModal"
     tabindex="-1"
     aria-labelledby="couponModalLabel"
-    aria-hidden="true"
     ref="modalElement"
   >
     <div class="modal-dialog">
