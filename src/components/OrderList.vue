@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-import { currency } from '../utils/format';
+import { currency } from '@/utils/format';
 const props = defineProps<{
   cartData: {
     carts: {
@@ -36,17 +36,11 @@ const cartData = computed(() => props.cartData);
     </div>
     <div class="d-flex justify-content-between text-muted">
       <p>折扣</p>
-      <p>
-        -{{
-          currency(cartData?.total - cartData?.final_total)
-        }}
-      </p>
+      <p>-{{ currency(cartData?.total - cartData?.final_total) }}</p>
     </div>
   </div>
   <div class="d-flex justify-content-between mt-4">
     <p class="mb-0 h4 fw-bold">總金額</p>
-    <p class="mb-0 h4 fw-bold">
-      NT$ {{ currency(Math.round(cartData?.final_total)) }}
-    </p>
+    <p class="mb-0 h4 fw-bold">NT$ {{ currency(Math.round(cartData?.final_total)) }}</p>
   </div>
 </template>

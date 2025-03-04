@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, computed } from 'vue';
 import Loading from 'vue-loading-overlay';
-import { useCartStore } from '../stores/cart.ts';
+import { useCartStore } from '@/stores/cart.ts';
 import { useForm } from 'vee-validate';
 import { string, object } from 'yup';
 import { toTypedSchema } from '@vee-validate/yup';
@@ -48,46 +48,81 @@ onMounted(() => {
   <div class="container">
     <Loading :active="isLoading" :z-index="1060"></Loading>
     <div class="mt-3 pb-5">
-      <h3 v-intersect="{ animation: 'slide-left' }" class="mt-3 mb-4 animated slide-left-start">訂購資訊</h3>
+      <h3 v-intersect="{ animation: 'slide-left' }" class="mt-3 mb-4 animated slide-left-start">
+        訂購資訊
+      </h3>
       <div class="row">
         <div v-intersect="{ animation: 'slide-left' }" class="col-md-8 animated slide-left-start">
           <div class="justify-content-center">
             <form class="g-3" @submit="onSubmit" ref="form">
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input v-model="email" v-bind="emailAttrs" type="text" name="email" class="form-control" id="email"
-                  placeholder="請輸入Email" />
+                <input
+                  v-model="email"
+                  v-bind="emailAttrs"
+                  type="text"
+                  name="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="請輸入Email"
+                />
                 <div class="text-danger py-1">{{ errors.email }}</div>
               </div>
               <div class="mb-3">
                 <label for="name" class="form-label">訂購人姓名</label>
-                <input v-model="name" v-bind="nameAttrs" type="text" name="姓名" class="form-control" id="name"
-                  placeholder="請輸入姓名" />
+                <input
+                  v-model="name"
+                  v-bind="nameAttrs"
+                  type="text"
+                  name="姓名"
+                  class="form-control"
+                  id="name"
+                  placeholder="請輸入姓名"
+                />
                 <div class="text-danger py-1">{{ errors.name }}</div>
               </div>
               <div>
                 <div class="mb-3">
                   <label for="tel" class="form-label">訂購人電話</label>
-                  <input v-model="tel" v-bind="telAttrs" class="form-control" type="text" name="電話" id="tel"
-                    placeholder="請輸入電話" />
+                  <input
+                    v-model="tel"
+                    v-bind="telAttrs"
+                    class="form-control"
+                    type="text"
+                    name="電話"
+                    id="tel"
+                    placeholder="請輸入電話"
+                  />
                   <div class="text-danger py-1">{{ errors.tel }}</div>
                 </div>
                 <div class="mb-3">
                   <label for="address" class="form-label">訂購人地址</label>
-                  <input v-model="address" v-bind="addressAttrs" class="form-control" type="text" name="地址" id="address"
-                    placeholder="請輸入地址" />
+                  <input
+                    v-model="address"
+                    v-bind="addressAttrs"
+                    class="form-control"
+                    type="text"
+                    name="地址"
+                    id="address"
+                    placeholder="請輸入地址"
+                  />
                   <div class="text-danger py-1">{{ errors.address }}</div>
                 </div>
                 <div class="mb-3">
                   <label for="message" class="form-label">備註</label>
-                  <textarea v-model="message" v-bind="messageAttrs" class="form-control" type="text" id="message"
-                    cols="30" rows="3">
+                  <textarea
+                    v-model="message"
+                    v-bind="messageAttrs"
+                    class="form-control"
+                    type="text"
+                    id="message"
+                    cols="30"
+                    rows="3"
+                  >
                   </textarea>
                 </div>
                 <div class="text-end">
-                  <button type="submit" class="rounded btn btn-dark mb-3">
-                    訂單送出
-                  </button>
+                  <button type="submit" class="rounded btn btn-dark mb-3">訂單送出</button>
                 </div>
               </div>
             </form>
@@ -96,9 +131,8 @@ onMounted(() => {
         <div v-intersect="{ animation: 'slide-right' }" class="col-md-4 animated slide-right-start">
           <div class="border p-4 mb-4">
             <OrderList :cart-data="cartData" />
-            <router-link to="/cart"><button type="button" class="btn btn-dark w-100 mt-4 rounded">
-                回上一頁
-              </button>
+            <router-link to="/cart"
+              ><button type="button" class="btn btn-dark w-100 mt-4 rounded">回上一頁</button>
             </router-link>
           </div>
         </div>

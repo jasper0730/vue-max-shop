@@ -1,9 +1,5 @@
 <template>
-  <router-view v-slot="{ Component }">
-    <transition name="fade" mode="out-in">
-      <component :is="Component" />
-    </transition>
-  </router-view>
+  <router-view />
 </template>
 
 <style lang="scss">
@@ -29,7 +25,7 @@ table {
   object-fit: cover;
 }
 
-// 過場動畫
+// 動畫
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 1s ease;
@@ -37,6 +33,34 @@ table {
 
 .fade-enter-from,
 .fade-leave-to {
+  opacity: 0;
+}
+
+.slide-down-enter-active {
+  transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+.slide-down-enter-from {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.slide-down-enter-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-down-leave-active {
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+}
+
+.slide-down-leave-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-down-leave-to {
+  transform: translateY(-100%);
   opacity: 0;
 }
 </style>

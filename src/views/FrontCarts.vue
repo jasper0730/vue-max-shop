@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
-import { currency } from '../utils/format.ts';
+import { currency } from '@/utils/format.ts';
 import Loading from 'vue-loading-overlay';
-import { useCartStore } from '../stores/cart.ts';
+import { useCartStore } from '@/stores/cart.ts';
 import OrderList from '@/components/OrderList.vue';
 
 const store = useCartStore();

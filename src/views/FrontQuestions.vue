@@ -72,7 +72,7 @@ const toggleCollapse = (id: string) => {
       <div>
         <div class="accordion accordion-flush" id="accordionFlushExample">
           <div v-intersect="{ animation: 'slide-up' }" class="accordion-item animated slide-up-start"
-            v-for="(item) in faqList" :key="item.id">
+            v-for="item in faqList" :key="item.id">
             <h2 class="accordion-header" :id="'flush-heading-' + item.id">
               <button class="accordion-button" :class="{ collapsed: activeId !== item.id }" type="button"
                 @click="toggleCollapse(item.id)">

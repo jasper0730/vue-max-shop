@@ -1,17 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import Cookies from 'js-cookie';
-import axios from 'axios';
+import { computed } from 'vue';
 import { useForm } from 'vee-validate';
 import { string, object } from 'yup';
 import { toTypedSchema } from '@vee-validate/yup';
 import Loading from 'vue-loading-overlay';
-import Swal from 'sweetalert2';
+import { useAuthStore } from '@/stores/auth';
 
-const API_URL = import.meta.env.VITE_API;
-const router = useRouter();
-const isLoading = ref(false);
+const store = useAuthStore();
+const isLoading = computed(() => store.isLoading);
 
 const { handleSubmit, defineField, errors } = useForm({
   validationSchema: toTypedSchema(
@@ -26,34 +22,7 @@ const [password, passwordAttrs] = defineField('password');
 
 
 const onSubmit = handleSubmit(async (values, { resetForm }) => {
-  try {
-    isLoading.value = true;
-    const url = `${API_URL}/admin/signin`;
-    const user = {
-      username: values.email,
-      password: values.password,
-    };
-    const res = await axios.post(url, user);
-    const { token, expired } = res.data;
-    if (res.data.success) {
-      Cookies.set('myToken', token, { expires: new Date(expired) });
-      router.push('/admin/products');
-    } else {
-      throw new Error(res.data.message || "登入失敗");
-    }
-  } catch (error) {
-    resetForm();
-    Swal.fire({
-      title: "失敗",
-      text: "登入",
-      icon: "error",
-      timer: 3000,
-    });
-    console.error('登入失敗', error);
-  } finally {
-    isLoading.value = false;
-  }
-
+  store.logIn(values, resetForm);
 });
 </script>
 <template>

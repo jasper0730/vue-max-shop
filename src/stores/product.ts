@@ -9,7 +9,7 @@ interface Product {
   category: string;
   description: string;
   content: string;
-  price?: number;
+  price: number;
   origin_price: number;
 }
 

@@ -1,31 +1,36 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
+import { defineProps } from 'vue';
 
 defineProps({
-  modelValue: Boolean,
+  show: Boolean,
 });
-
-const emit = defineEmits(['update:modelValue']);
-
-const closeModal = () => {
-  emit('update:modelValue', false);
-};
 </script>
 
 <template>
   <transition name="fade">
-    <div v-if="modelValue" class="modal-backdrop" @click.self="closeModal">
-      <div class="modal-content">
-        <slot></slot>
-      </div>
+    <div v-if="show" class="custom-modal">
+      <div class="overlay" @click.self="$emit('close')"></div>
+      <slot></slot>
     </div>
   </transition>
 </template>
 
 <style scoped>
-/* 背景遮罩 */
-.modal-backdrop {
+.custom-modal {
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
   position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.overlay {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -36,31 +41,13 @@ const closeModal = () => {
   justify-content: center;
 }
 
-/* Modal 內容 */
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-/* 關閉按鈕 */
-.close-btn {
-  margin-top: 10px;
-  padding: 5px 10px;
-  border: none;
-  background: #ff5f5f;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-/* 過場動畫 */
-.fade-enter-active, .fade-leave-active {
+/* 動畫 */
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.3s ease;
 }
-.fade-enter-from, .fade-leave-to {
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 }
 </style>
