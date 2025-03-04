@@ -1,0 +1,1 @@
+function o(e){const t=typeof e=="string"?parseInt(e,10):e;return isNaN(t)?"0":`${t.toFixed(0).replace(/./g,(a,n,r)=>n&&a!=="."&&(r.length-n)%3===0?`, ${a}`.replace(/\s/g,""):a)}`}function c(e){return new Date(e*1e3).toLocaleDateString()}export{o as c,c as d};
